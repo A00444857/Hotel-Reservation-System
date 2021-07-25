@@ -52,13 +52,6 @@ public class HotelsListFragment extends Fragment implements ItemClickListener {
         headingTextView.setText("Welcome user, displaying hotel for " + numberOfGuests + " guests staying from " + checkInDate +
                 " to " + checkOutDate);
 
-
-        // Set up the RecyclerView
-//        ArrayList<HotelListData> hotelListData = initHotelListData();
-//        RecyclerView recyclerView = view.findViewById(R.id.hotel_list_recyclerView);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        HotelListAdapter hotelListAdapter = new HotelListAdapter(getActivity(), hotelListData);
-//        recyclerView.setAdapter(hotelListAdapter);
         getHotelsListsData();
     }
 
@@ -104,20 +97,23 @@ public class HotelsListFragment extends Fragment implements ItemClickListener {
         String hotelName = hotelListData.getHotel_name();
         String price = hotelListData.getPrice();
         String availability = hotelListData.getAvailability();
+        if(availability=="false"){
+            Toast.makeText(getActivity(), "This Hotel is Full, Select another one", Toast.LENGTH_LONG).show();
+        }
+        else{
+            Bundle bundle = new Bundle();
+            bundle.putString("hotel name", hotelName);
+            bundle.putString("hotel price", price);
+            bundle.putString("hotel availability", availability);
 
-        Bundle bundle = new Bundle();
-        bundle.putString("hotel name", hotelName);
-        bundle.putString("hotel price", price);
-        bundle.putString("hotel availability", availability);
+            HotelGuestDetailsFragment hotelGuestDetailsFragment = new HotelGuestDetailsFragment();
+            hotelGuestDetailsFragment.setArguments(bundle);
 
-        HotelGuestDetailsFragment hotelGuestDetailsFragment = new HotelGuestDetailsFragment();
-        hotelGuestDetailsFragment.setArguments(bundle);
-
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.remove(HotelsListFragment.this);
-        fragmentTransaction.replace(R.id.main_layout, hotelGuestDetailsFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commitAllowingStateLoss();
-
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.remove(HotelsListFragment.this);
+            fragmentTransaction.replace(R.id.main_layout, hotelGuestDetailsFragment);
+            fragmentTransaction.commitAllowingStateLoss();
+        }
     }
 }

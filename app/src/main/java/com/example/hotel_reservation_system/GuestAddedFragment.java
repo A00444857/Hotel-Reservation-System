@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public class GuestAddedFragment extends Fragment {
     View view;
@@ -25,7 +26,7 @@ public class GuestAddedFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         String confirmationNumber = getArguments().getString("confirmation number");
         TextView cNumber = view.findViewById(R.id.confirmation_number);
-        cNumber.setText("Your Confirmation Number is: "+confirmationNumber);
-
+        cNumber.setText("Thank you for your reservation, your reservation number is: "+confirmationNumber);
     }
+
 }

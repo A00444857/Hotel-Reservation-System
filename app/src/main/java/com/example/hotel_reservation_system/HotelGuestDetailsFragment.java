@@ -123,11 +123,10 @@ public class HotelGuestDetailsFragment extends Fragment  {
                             bundle.putString("confirmation number", confirmation_number.getconfirmation_number());
                             GuestAddedFragment guestAddedFragment=new GuestAddedFragment();
                             guestAddedFragment.setArguments(bundle);
-
                             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                            fragmentTransaction.replace(R.id.main_layout, guestAddedFragment);
-                            fragmentTransaction.remove(HotelGuestDetailsFragment.this);
                             fragmentTransaction.addToBackStack(null);
+                            fragmentTransaction.remove(HotelGuestDetailsFragment.this);
+                            fragmentTransaction.replace(R.id.main_layout, guestAddedFragment);
                             fragmentTransaction.commit();
                         }
 

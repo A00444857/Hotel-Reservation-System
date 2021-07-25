@@ -1,6 +1,7 @@
 package com.example.hotel_reservation_system;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
     private List<HotelListData> hotelListData;
     private LayoutInflater layoutInflater;
     private ItemClickListener clickListener;
-
+    View view;
     //Data gets passed in the constructor
     HotelListAdapter(Context context, List<HotelListData> hotelListData) {
         this.layoutInflater = LayoutInflater.from(context);
@@ -29,7 +30,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
     @NonNull
     @Override
     public HotelListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.hotel_list_layout, parent, false);
+        view = layoutInflater.inflate(R.layout.hotel_list_layout, parent, false);
         return new ViewHolder(view);
     }
 
@@ -38,7 +39,9 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
         String hotelName = hotelListData.get(position).getHotel_name();
         String hotelPrice = hotelListData.get(position).getPrice();
         String hotelAvailability = hotelListData.get(position).getAvailability();
-
+        if(hotelAvailability=="false"){
+            view.findViewById(R.id.row_linearlayout).setBackgroundColor(Color.RED);
+        }
         // set up the text
         holder.hotelName.setText(hotelName);
         holder.hotelAvailability.setText(hotelAvailability);
@@ -65,7 +68,6 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
             hotelName = itemView.findViewById(R.id.hotel_name_text_view);
             hotelPrice = itemView.findViewById(R.id.price_text_view);
             hotelAvailability = itemView.findViewById(R.id.availability_text_view);
-
             itemView.setOnClickListener(this);
         }
         @Override

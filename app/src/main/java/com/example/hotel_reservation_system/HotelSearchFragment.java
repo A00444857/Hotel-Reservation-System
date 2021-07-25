@@ -50,7 +50,6 @@ public class HotelSearchFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         mainLayout = view.findViewById(R.id.main_layout);
         titleTextView = view.findViewById(R.id.title_text_view);
         searchTextConfirmationTextView = view.findViewById(R.id.search_confirm_text_view);
@@ -170,21 +169,5 @@ public class HotelSearchFragment extends Fragment {
 
         return formattedDate;
     }
-
-
-    // Function to get the date object
-//    private String getDateFromCalendar(){
-//        int day = checkInDatePicker.getDayOfMonth();
-//        int month = checkInDatePicker.getMonth();
-//        int year = checkInDatePicker.getYear();
-//
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.set(year,month,day);
-//
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-//        String formattedDate = simpleDateFormat.format(calendar.getTime());
-//
-//        return formattedDate;
-//    }
 
 }
